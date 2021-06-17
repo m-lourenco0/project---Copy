@@ -9,7 +9,7 @@ export default class Categorias {
   }
 
   desinscrever(func){
-    this._inscritos = this._inscritos.filter(f => f!= func);
+    this._inscritos = this._inscritos.filter(f => f!== func);
   }
 
   notificar() {

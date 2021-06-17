@@ -4,23 +4,23 @@ import "./style.css";
 class FormularioCadastro extends Component {
   constructor(props) {
     super(props);
-    this.titulo = "";
-    this.texto = "";
-    this.categoria = "Sem Categoria";
-    this.state = {categorias:[]}
-    this._novasCategorias = this._novasCategorias.bind(this);
+    this.id = "";
+    this.name = "";
+    this.email = "";
+    this.state = {users:[]}
+    this._novosUsers = this._novosUsers.bind(this);
   }
 
   componentDidMount(){
-    this.props.categorias.inscrever(this._novasCategorias);
+    //this.props.categorias.inscrever(this._novasCategorias);
   }
 
   componentWillUnmount(){
-    this.props.categorias.desinscrever(this._novasCategorias);
+    //this.props.categorias.desinscrever(this._novasCategorias);
   }
 
-  _novasCategorias(categorias){
-    this.setState({...this.state, categorias});
+  _novosUsers(users){
+    this.setState({...this.state, users});
   }
 
   _handleMudancaCategoria(evento) {
@@ -28,50 +28,50 @@ class FormularioCadastro extends Component {
     this.categoria = evento.target.value;
   }
 
-  _handleMudancaTitulo(evento) {
+  _handleMudancaNome(evento) {
     evento.stopPropagation();
-    this.titulo = evento.target.value;
+    this.name = evento.target.value;
   }
 
-  _handleMudancaTexto(evento) {
+  _handleMudancaEmail(evento) {
     evento.stopPropagation();
-    this.texto = evento.target.value;
+    this.email = evento.target.value;
   }
 
-  _criarNota(evento) {
+  _criarUser(evento) {
     evento.preventDefault();
     evento.stopPropagation();
-    this.props.criarNota(this.titulo, this.texto, this.categoria);
+    this.props.criarUser(this.id, this.name, this.email);
   }
 
   render() {
     return (
-      <form className="form-cadastro" onSubmit={this._criarNota.bind(this)}>
+      <form className="form-cadastro" onSubmit={this._criarUser.bind(this)}>
         <select
-          onChange={this._handleMudancaCategoria.bind(this)}
+          // onChange={this._handleMudancaCategoria.bind(this)}
           className="form-cadastro_input"
         >
           <option>Sem Categoria</option>
 
-          {this.state.categorias.map((categoria, index) => {
+          {/* {this.state.categorias.map((categoria, index) => {
             return <option key={index}>{categoria}</option>;
-          })}
+          })} */}
         </select>
 
         <input
           type="text"
-          placeholder="Título"
+          placeholder="Nome"
           className="form-cadastro_input"
-          onChange={this._handleMudancaTitulo.bind(this)}
+          onChange={this._handleMudancaNome.bind(this)}
         />
         <textarea
-          rows={15}
-          placeholder="Escreva sua nota..."
+          rows={1}
+          placeholder="Escreva seu email"
           className="form-cadastro_input"
-          onChange={this._handleMudancaTexto.bind(this)}
+          onChange={this._handleMudancaEmail.bind(this)}
         />
         <button className="form-cadastro_input form-cadastro_submit">
-          Criar Nota
+          Criar User
         </button>
       </form>
     );

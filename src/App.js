@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import ListaDeNotas from "./componentes/ListaDeNotas/";
+//import ListaDeNotas from "./componentes/ListaDeNotas/";
 import FormularioCadastro from "./componentes/FormularioCadastro/";
-import ListaDeCategorias from "./componentes/ListaDeCategorias";
+//import ListaDeCategorias from "./componentes/ListaDeCategorias";
 import Categorias from "./dados/Categorias";
 import ArrayDeNotas from "./dados/Notas";
 import "./assets/App.css";
@@ -11,26 +11,20 @@ class App extends Component {
   constructor() {
     super();
     this.categorias = new Categorias();
-    this.notas = new ArrayDeNotas();
+    this.users = new ArrayDeNotas();
   }
 
   render() {
     return (
       <section className="conteudo">
         <FormularioCadastro
-          criarNota={this.notas.adicionarNota.bind(this.notas)}
-          categorias={this.categorias}
+          criarUser={this.users.adicionarUser}
         />
         <main className="conteudo-principal">
-          <ListaDeCategorias
-            adicionarCategoria={this.categorias.adicionarCategoria.bind(this.categorias)}
-            categorias={this.categorias}
-          />
-
-          <ListaDeNotas
+          {/* <ListaDeNotas
             apagarNota={this.notas.apagarNota.bind(this.notas)}
-            notas={this.notas}
-          />
+            users={this.users}
+          /> */}
         </main>
       </section>
     );

@@ -1,13 +1,17 @@
+import { CreateUser } from "../Models/Usuarios";
+
 export default class ArrayDeNotas {
   constructor() {
-    this.notas = [];
+    this.users = [];
     this._inscritos = [];
   }
 
-  adicionarNota(titulo, texto, categoria) {
-    const novaNota = new Nota(titulo, texto, categoria);
-    this.notas.push(novaNota);
-    this.notificar();
+  adicionarUser(id, name, email) {
+    const _novoUser = new User(0, name, email);
+    const novoUser = CreateUser(_novoUser);
+    console.log(novoUser);
+    //this.users.push(_novoUser);
+    //this.notificar();
   }
 
   apagarNota(indice) {
@@ -20,20 +24,20 @@ export default class ArrayDeNotas {
   }
 
   desinscrever(func){
-    this._inscritos = this._inscritos.filter(f => f!= func);
+    this._inscritos = this._inscritos.filter(f => f!== func);
   }
 
   notificar() {
     this._inscritos.forEach((func) => {
-      func(this.notas);
+      func(this.users);
     });
   }
 }
 
-class Nota {
-  constructor(titulo, texto, categoria) {
-    this.titulo = titulo;
-    this.texto = texto;
-    this.categoria = categoria;
+class User {
+  constructor(id, name, email) {
+    this.id = id;
+    this.name = name;
+    this.email = email;
   }
 }
